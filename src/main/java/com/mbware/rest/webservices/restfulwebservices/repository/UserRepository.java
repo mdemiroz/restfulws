@@ -17,6 +17,10 @@ public class UserRepository {
         list.add(new User(3, "deli", new Date()));
     }
 
+    public List<User> findAll() {
+        return list;
+    }
+
     public Optional<User> findById(Integer id) {
         Optional<User> user = Optional.empty();
         for(User u : list)
@@ -38,6 +42,13 @@ public class UserRepository {
             user.setId(++size);
         list.add(user);
         return user;
+    }
+
+    public User deleteById(Integer id) {
+        for(int i = 0; i<list.size(); i++)
+            if(list.get(i).getId().equals(id))
+                return list.remove(i);
+        return null;
     }
 
 }
